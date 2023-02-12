@@ -62,7 +62,12 @@ Our training script contains five stages:
 
 ## Quickstart: Visualization
 ```
-python train_vnn_occupancy_net.py --checkpoint_path checkpoints/4.pth --stage 3 --vis True //2 could be replaced by 0,1,2,3,4 for the visualization of any stage
+cd src/ndf/training
+python train_vnn_occupancy_net.py 
+    --checkpoint_path checkpoints/4.pth \ 
+    --stage 3 \ 
+    --vis True 
+        //2 could be replaced by 0,1,2,3,4 for the visualization of any stage
 ```
 We provide an example of visualization of the five stages (you could also see the vis folder under src/ndf/training for .ply files):
 <p align="center">
@@ -72,13 +77,23 @@ We provide an example of visualization of the five stages (you could also see th
 ## Training
 For curriculum learning of different stages:
 ```
-python train_vnn_occupancy_net.py --experiment_name 0 --stage 0 //Training Stage 0
-python train_vnn_occupancy_net.py --experiment_name 0 --checkpoint_path checkpoints/0.pth --stage 1 //Training Stage 1. Similar commands for training other stages.
+cd src/ndf/training
+python train_vnn_occupancy_net.py 
+    --experiment_name 0 
+    --stage 0 
+        //Training Stage 0
+python train_vnn_occupancy_net.py 
+    --experiment_name 0 
+    --checkpoint_path checkpoints/0.pth 
+    --stage 1 
+        //Training Stage 1. Similar commands for training other stages.
 ```
 
 ## Testing
 ```
-python train_vnn_occupancy_net.py --checkpoint_path checkpoints/4.pth --test True
+python train_vnn_occupancy_net.py 
+    --checkpoint_path checkpoints/4.pth 
+    --test True
 ```
 (TODO: will upload the inference codes on 02/12/2023. We found a bug in the original codes so the testing performances are slightly better than the paper.)
 
