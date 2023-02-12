@@ -19,7 +19,7 @@ PyTorch implementation for training continuous 3D neural fields to extract featu
 ## Setup
 **Clone this repo**
 ```
-git clone --recursive https://github.com/evelinehong/3D-CG.git
+git clone --recursive https://github.com/evelinehong/3D-Concept-Grounding.git
 cd ndf
 ```
 **Install dependencies** (using a virtual environment is highly recommended):
