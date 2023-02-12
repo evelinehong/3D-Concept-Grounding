@@ -85,6 +85,7 @@ python train_vnn_occupancy_net.py
     --stage 1 
         //Training Stage 1. Similar commands for training other stages.
 ```
+After each stage, you can run the visualization above. 
 
 ## Testing
 ```
