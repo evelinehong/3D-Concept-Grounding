@@ -12,7 +12,7 @@ This is the reference implementation for our paper:
 
 ### Paper: 3D Concept Grounding on Neural Fields
 <p align="center">
-<img src="./doc/method.png" alt="drawing" width="320"/>
+<img src="./doc/method.png" alt="drawing" width="700"/>
 </p>
 
 [PDF](https://arxiv.org/abs/2207.06403) 
@@ -66,7 +66,7 @@ python train_vnn_occupancy_net.py --checkpoint_path checkpoints/4.pth --stage 3 
 ```
 We provide an example of visualization of the five stages (you could also see the vis folder for .ply files):
 <p align="center">
-<img src="./doc/curriculum.png" alt="drawing" width="320"/>
+<img src="./doc/curriculum.png" alt="drawing" width="700"/>
 </p>
 
 ## Training
