@@ -3,7 +3,7 @@
 PyTorch implementation for training continuous 3D neural fields to extract features, and using these descriptor fields to perform 3D reasoning
 
 <p align="center">
-<img src="./doc/example.png" alt="drawing" width="700"/>
+<img src="./doc/qualitative.png" alt="drawing" width="700"/>
 </p>
 
 ---
