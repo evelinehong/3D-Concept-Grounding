@@ -1,6 +1,6 @@
 # 3D Concept Grounding on Neural Fields
 
-PyTorch implementation for training continuous 3D neural fields to extract features, and using these descriptor fields to perform 3D reasoning
+PyTorch implementation for "3D Concept Grounding on Neural Fields (NeurIPS2022)"
 
 <p align="center">
 <img src="./doc/qualitative.png" alt="drawing" width="700"/>
