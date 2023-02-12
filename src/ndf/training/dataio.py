@@ -54,10 +54,6 @@ class JointOccTrainDataset(Dataset):
                         if ques[0][0] in [0]:
                             continue
 
-                if test:
-                    if ques[0][0] == 0 and ques[1][0] == -1:
-                        continue
-
                 self.files.append(file)
                 self.filenames.append(filename)
                 self.ques.append(idx)
@@ -245,9 +241,6 @@ class JointOccTrainDataset(Dataset):
             else:
                 question = self.ques_dict[filename][0][q_index]
                 answer = int(self.ques_dict[filename][1][q_index])
-            
-            if question[0][0] == 4:
-                question = [[3,-1], question[0]]
 
             question = torch.tensor(question)
 
