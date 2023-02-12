@@ -8,14 +8,11 @@ PyTorch implementation for training continuous 3D neural fields to extract featu
 
 ---
 
-This is the reference implementation for our paper:
-
-### Paper: 3D Concept Grounding on Neural Fields
 <p align="center">
 <img src="./doc/method.png" alt="drawing" width="700"/>
 </p>
 
-[PDF](https://arxiv.org/abs/2207.06403) 
+[Paper](https://arxiv.org/abs/2207.06403) 
 
 [Yining Hong](https://evelinehong.github.io/), [Yilun Du](https://yilundu.github.io/), Chunru Lin, [Joshua B. Tenenbaum](http://web.mit.edu/cocosci/josh.html), [Chuang Gan](https://people.csail.mit.edu/ganchuang/) 
 
