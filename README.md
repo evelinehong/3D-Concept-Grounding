@@ -64,7 +64,7 @@ Our training script contains five stages:
 ```
 python train_vnn_occupancy_net.py --checkpoint_path checkpoints/4.pth --stage 3 --vis True //2 could be replaced by 0,1,2,3,4 for the visualization of any stage
 ```
-We provide an example of visualization of the five stages (you could also see the vis folder for .ply files):
+We provide an example of visualization of the five stages (you could also see the vis folder under src/ndf/training for .ply files):
 <p align="center">
 <img src="./doc/curriculum.png" alt="drawing" width="700"/>
 </p>
