@@ -93,7 +93,7 @@ python train_vnn_occupancy_net.py
     --checkpoint_path checkpoints/4.pth 
     --test True
 ```
-(We found a bug in the original codes so the testing performances are slightly better than the paper. )
+We found a bug in the original codes so the testing performances are slightly better than the paper. :)
 
 # Citing
 If you find our paper or this code useful in your work, please cite our paper:
