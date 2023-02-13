@@ -38,8 +38,8 @@ class JointOccTrainDataset(Dataset):
                 self.files.append(file)
                 self.filenames.append(filename)
                 continue
-                
-            questions, answers = self.ques_dict[filename]
+
+            questions, answers = self.ques_dict[filename]["programs"], self.ques_dict[filename]["prog_answers"]
 
             for (idx, ques) in enumerate(questions):
                 if ((not stage in [0,1]) and not vis):
@@ -239,8 +239,8 @@ class JointOccTrainDataset(Dataset):
                 question = [[3, -1], [4, 2]]
                 answer = -1
             else:
-                question = self.ques_dict[filename][0][q_index]
-                answer = int(self.ques_dict[filename][1][q_index])
+                question = self.ques_dict[filename]["programs"][q_index]
+                answer = int(self.ques_dict[filename]["prog_answers"][q_index])
 
             question = torch.tensor(question)
 
