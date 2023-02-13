@@ -45,8 +45,9 @@ parse_dicts
   *.pkl //contains ground-truth occupancy values for training the neural descriptor field
 train.json //all training shapes
 val.json //all testing shapes
-train_questions.json //training questions, programs, answers (will be updated with more details)
+train_questions.json //training questions, programs, answers 
 val_questions.json //test questions
+readme_questions.txt //how to read question files
 ```
 
 ## Curriculum Learning
