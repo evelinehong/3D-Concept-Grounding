@@ -24,7 +24,7 @@ p.add_argument('--num_epochs', type=int, default=200,
 
 p.add_argument('--epochs_til_ckpt', type=int, default=5,
                help='Time interval in seconds until checkpoint is saved.')
-p.add_argument('--steps_til_summary', type=int, default=5,
+p.add_argument('--steps_til_summary', type=int, default=5000,
                help='Time interval in seconds until tensorboard summary is saved.')
 p.add_argument('--iters_til_ckpt', type=int, default=250,
                help='Training steps until save checkpoint')
