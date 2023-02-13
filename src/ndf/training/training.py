@@ -13,6 +13,7 @@ import torch.distributed as dist
 import open3d as o3d
 from sklearn.cluster import KMeans, DBSCAN
 import random
+from tqdm import tqdm
 
 import ndf.training.util as util
 
@@ -272,15 +273,26 @@ def inference(model, val_dataloader=None):
 
     if val_dataloader is not None:
         print("Running validation set...")
-        with torch.no_grad():
-            model.eval()
 
-            m = 0; n = 0;
-            for val_i, (model_input, gt) in enumerate(val_dataloader):
+        acc_dict = {"filter": 0, "query": 0, "count": 0, "all": 0}
+        total_dict = {"filter": 0, "query": 0, "count": 0, "all": 0}
+
+        with torch.no_grad():
+            model.eval()    
+
+            for val_i, (model_input, gt) in enumerate(tqdm(val_dataloader)):
                 model_input = util.dict_to_gpu(model_input)
 
                 gt = util.dict_to_gpu(gt)
 
-                model_output = model.inference(model_input)
+                correct, type = model.inference(model_input)
+
+                total_dict["all"] += 1; total_dict[type] += 1
+                acc_dict["all"] += correct; acc_dict[type] += correct
+
+        for key in acc_dict:
+            acc_dict[key] /= total_dict[key]
+
+        print (acc_dict)
 
  
