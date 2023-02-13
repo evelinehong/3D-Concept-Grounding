@@ -274,6 +274,8 @@ class VNNOccNet(nn.Module):
         if input['question'][0][1][0] == 4:
             out3 = torch.zeros((bsize, 3000, 10)).cuda()
 
+        type = ''
+
         for j in range(bsize):
             for i in range(input['question'][j].shape[0]):
 
@@ -306,27 +308,19 @@ class VNNOccNet(nn.Module):
                         
                         o = o[torch.where(output_2[j])[0]]
 
-                        # if len(input['question'][j]) == 2:
-                        #     print (output_2, torch.where(output_2[j])[0])
-
                         outs = []
                         for k in range(out.shape[0]):
                             outs.append(torch.sum(o == k))
 
                         outs = torch.tensor(outs)
 
-                        # if len(input['question'][j]) == 2:
-                        #     print (out2)
-
                         q = torch.argmax(outs).item()
-
-                        # if len(input['question'][j]) == 4 and i == 3:
-                        #     print (out)
-                        #     print (q, input['answer'], input['question'], input['id'])
                         
-                        # if i == 1 and len(input['question'][j]) == 2:
-                        #     print (out2)
-                        #     print (torch.argmax(outs), torch.argmax(out), input['answer'], input['question'])
+                        if (i == 1 and len(input['question'][j]) == 2) or (len(input['question'][j]) == 4 and i == 3):
+                            correct = (q == input['answer'])
+                            type = 'query'
+                            # print (out2)
+                            # print (torch.argmax(outs), torch.argmax(out), input['answer'], input['question'])
 
                     elif input['question'][j,i,0] in [4]:
                         o = torch.zeros((3000)).cuda()
@@ -340,7 +334,9 @@ class VNNOccNet(nn.Module):
                         labels = torch.argmax(out3[j], 1)
                         labels = labels[torch.where(o)[0]]
 
-                        # print (torch.bincount(labels), input['answer'])
+                        correct = (torch.where(torch.bincount(labels) > 0)[0].shape[0] == input['answer'])
+                        type='count'
+                        
                     else:
                         if len(input['question'][j]) == 4 and i == 2:
                             output_2[j] = output_3
@@ -360,13 +356,21 @@ class VNNOccNet(nn.Module):
                             output_3 = (1 - o) * output_2[j]
 
                         o = o * output_2[j]
+
+                        if i == 1:
+                            correct = (torch.sum(o) > 0.5 * torch.sum(output_2)) == input['answer']
+                            type='filter'
+                            break
+
                         output_2[j] = o  
 
-                        # if i in [2] and input['question'][j,i+1,0] == -1:
-                        #     print (input['id'], torch.sum(o), input['answer'], input['question'])
-                        # > 100
-                            # if input['question'][j,1,0] == 1 and i == 1:
-                            #     print (input['id'], torch.sum(o), torch.sum(output_2[j]), input['question'], input['answer'])                                                                                            
+                        if i in [0, 2] and input['question'][j,i+1,0] == -1:
+                            correct = (torch.sum(o) > 100) == input['answer']
+                            type='filter'
+                            break
+                            # print (input['id'], torch.sum(o), input['answer'], input['question'])
+
+        return correct.item(), type                                                                                    
 
     def extract_latent(self, input):
         enc_in = input['point_cloud'] * self.scaling 
